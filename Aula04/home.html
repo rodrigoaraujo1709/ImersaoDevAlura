@@ -1,10 +1,25 @@
-<link href="css.css" rel="stylesheet">
-<div class="container">
-  <h1 class="page-title">
-    Aluraflix
-  </h1>
-  <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-aluraflix.svg" class="page-logo" alt="">
-</div>
-<a href="https://alura.com.br/" target="_blank">
-  <img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="" class="alura-logo">
-</a>
+<html>
+	<link href="css.css" rel="stylesheet">
+	<head>
+		<title>Imersão Dev - Aula 04</title>
+	</head>
+	<body>
+		<div class="container">
+			<h1 class="page-title">Aluraflix</h1>
+			<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-aluraflix.svg" class="page-logo" alt="">
+		</div>
+		<a href="https://alura.com.br/" target="_blank"><img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="" class="alura-logo"></a>
+	</body>
+</html>
+
+<script>
+	var listaFilmes = [
+	"https://br.web.img2.acsta.net/pictures/18/03/16/15/08/2019826.jpg",
+	"https://br.web.img2.acsta.net/medias/nmedia/18/92/34/89/20194741.jpg",
+	"https://br.web.img3.acsta.net/medias/nmedia/18/92/91/18/20224756.jpg"
+	];
+
+	for (var i = 0; i < listaFilmes.length; i++) {
+		document.write("<img src=" + listaFilmes[i] + ">");
+	}
+</script>
