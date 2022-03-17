@@ -1,0 +1,116 @@
+<html>
+<link href="css.css" rel="stylesheet">
+<head>
+  <title>
+    Imersão Dev - Aula 07
+  </title>
+</head>
+
+<body>
+  <div class="container">
+    <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-super-trunfo.png" class="page-logo" alt="">
+    <h1 class="page-title">Super Trunfo</h1>
+
+    <button onclick="sortearCarta()" id="btnSortear">Sortear carta</button>
+
+    <form id="form">
+      <h2>Escolha o seu atributo</h2>
+      <div class="opcoes" id="opcoes"></div>
+      <button type="button" id="btnJogar" onclick="jogar()" disabled="true">Jogar</button>
+      <div id="resultado"></div>
+    </form>
+  </div>
+</body>
+
+</html>
+
+<script>
+	var carta1 = {
+  nome: "Bulbasauro",
+  atributos: {
+    ataque: 7,
+    defesa: 8,
+    magia: 6
+  }
+};
+
+var carta2 = {
+  nome: "Darth Vader",
+  atributos: {
+    ataque: 9,
+    defesa: 8,
+    magia: 2
+  }
+};
+
+var carta3 = {
+  nome: "Shiryu de dragão",
+  atributos: {
+    ataque: 5,
+    defesa: 9,
+    magia: 10
+  }
+};
+
+var cartas = [carta1, carta2, carta3];
+var cartaMaquina;
+var cartaJogador;
+
+function sortearCarta() {
+  var numeroCartaMaquina = parseInt(Math.random() * 3);
+  cartaMaquina = cartas[numeroCartaMaquina];
+
+  var numeroCartaJogador = parseInt(Math.random() * 3);
+  while (numeroCartaMaquina == numeroCartaJogador) {
+    numeroCartaJogador = parseInt(Math.random() * 3);
+  }
+  cartaJogador = cartas[numeroCartaJogador];
+  console.log(cartaJogador);
+
+  document.getElementById("btnSortear").disabled = true;
+  document.getElementById("btnJogar").disabled = false;
+
+  exibirOpcoes();
+}
+
+function exibirOpcoes() {
+  var opcoes = document.getElementById("opcoes");
+  var opcoesTexto = "";
+
+  for (var atributo in cartaJogador.atributos) {
+    opcoesTexto +=
+      "<input type='radio' name='atributo' value='" +
+      atributo +
+      "'>" +
+      atributo;
+  }
+  opcoes.innerHTML = opcoesTexto;
+}
+
+function obtemAtributoSelecionado() {
+  var radioAtributos = document.getElementsByName("atributo");
+
+  for (var i = 0; i < radioAtributos.length; i++) {
+    if (radioAtributos[i].checked == true) {
+      return radioAtributos[i].value;
+    }
+  }
+}
+
+function jogar() {
+  var atributoSelecionado = obtemAtributoSelecionado();
+  var elementoResultado = document.getElementById("resultado");
+  var valorCartaJogador = cartaJogador.atributos[atributoSelecionado];
+  var valorCartaMaquina = cartaMaquina.atributos[atributoSelecionado];
+
+  if (valorCartaJogador > valorCartaMaquina) {
+    elementoResultado.innerHTML = "Você venceu";
+  } else if (valorCartaMaquina > valorCartaJogador) {
+    elementoResultado.innerHTML = "Você perdeu, a carta da máquina é maior";
+  } else {
+    elementoResultado.innerHTML = "Empatou";
+  }
+  console.log(cartaMaquina);
+}
+
+</script>
